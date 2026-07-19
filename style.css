@@ -350,3 +350,43 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 .cart-total span:last-child { color: var(--color-gold); }
 .cart-checkout-btn { width: 100%; padding: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; font-size: 1rem; font-weight: 600; letter-spacing: 1.5px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
 .cart-checkout-btn i { font-size: 1.3rem; }
+
+/* ================= 11. Checkout & UPI Payment Modal ================= */
+.checkout-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1100; opacity: 0; pointer-events: none; transition: 0.4s ease; backdrop-filter: blur(8px); }
+.checkout-modal-overlay.active { opacity: 1; pointer-events: all; }
+.checkout-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 90%; max-width: 450px; background: var(--color-bg-card); z-index: 1110; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 1px solid rgba(207,161,68,0.3); padding: 40px; opacity: 0; pointer-events: none; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden; }
+.checkout-modal.active { transform: translate(-50%, -50%); opacity: 1; pointer-events: all; }
+.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--color-text-secondary); font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
+.modal-close:hover { color: var(--color-gold); transform: rotate(90deg); }
+.checkout-screen { display: none; text-align: center; animation: fadeIn 0.4s ease; }
+.checkout-screen.active { display: block; }
+
+.checkout-screen h3 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--color-gold); margin-bottom: 10px; }
+.pay-amount { font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 25px; }
+.pay-amount span { color: var(--color-text-primary); font-weight: 600; font-size: 1.3rem; }
+
+.qr-container { width: 200px; height: 200px; margin: 0 auto 15px; position: relative; border-radius: 12px; overflow: hidden; border: 2px solid var(--color-gold); padding: 5px; background: #fff; }
+.qr-container img { width: 100%; height: 100%; object-fit: contain; }
+.qr-instructions { font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 30px; }
+
+.utr-input-group { text-align: left; margin-bottom: 25px; }
+.utr-input-group label { display: block; font-size: 0.85rem; color: var(--color-gold); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.utr-input-group input { width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--color-text-primary); font-family: var(--font-sans); font-size: 1rem; outline: none; transition: 0.3s; }
+.utr-input-group input:focus { border-color: var(--color-gold); box-shadow: 0 0 10px rgba(207,161,68,0.2); }
+.error-msg { color: #ff4757; font-size: 0.8rem; margin-top: 5px; display: none; }
+
+.verify-btn, .whatsapp-receipt-btn { width: 100%; padding: 15px; font-size: 1rem; border-radius: 8px; font-weight: 600; letter-spacing: 1px; }
+
+.spinner-container { margin: 40px auto; }
+.bank-spinner { width: 60px; height: 60px; border: 4px solid rgba(207,161,68,0.2); border-top-color: var(--color-gold); border-radius: 50%; margin: 0 auto; animation: spin 1s infinite linear; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.status-text { color: var(--color-text-secondary); font-size: 0.95rem; margin-top: 15px; line-height: 1.5; }
+
+.success-icon { font-size: 4rem; color: #2ecc71; margin: 20px 0 15px; animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes bounceIn { 0% { transform: scale(0); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.order-id { font-size: 1.1rem; color: var(--color-text-primary); font-family: var(--font-serif); margin-bottom: 25px; padding: 10px; border: 1px dashed rgba(207,161,68,0.4); border-radius: 8px; display: inline-block; background: rgba(207,161,68,0.05); }
+.success-alert { background: rgba(46, 204, 113, 0.1); border-left: 3px solid #2ecc71; padding: 15px; border-radius: 4px; display: flex; gap: 15px; text-align: left; margin-bottom: 25px; }
+.success-alert i { color: #2ecc71; font-size: 1.2rem; margin-top: 2px; }
+.success-alert p { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4; margin: 0; }

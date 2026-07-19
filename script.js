@@ -280,23 +280,123 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // WhatsApp Checkout Logic
-    if (whatsappCheckoutBtn) {
-        whatsappCheckoutBtn.addEventListener('click', () => {
+    // ==========================================
+    // 9. Checkout & UPI Verification Modal
+    // ==========================================
+    const proceedCheckoutBtn = document.getElementById('proceedCheckoutBtn');
+    const checkoutModal = document.getElementById('checkoutModal');
+    const checkoutModalOverlay = document.getElementById('checkoutModalOverlay');
+    const checkoutClose = document.getElementById('checkoutClose');
+    const checkoutTotalAmount = document.getElementById('checkoutTotalAmount');
+    
+    const checkoutScreen1 = document.getElementById('checkoutScreen1');
+    const checkoutScreen2 = document.getElementById('checkoutScreen2');
+    const checkoutScreen3 = document.getElementById('checkoutScreen3');
+    
+    const utrInput = document.getElementById('utrInput');
+    const utrError = document.getElementById('utrError');
+    const verifyPaymentBtn = document.getElementById('verifyPaymentBtn');
+    
+    const generatedOrderId = document.getElementById('generatedOrderId');
+    const sendReceiptBtn = document.getElementById('sendReceiptBtn');
+
+    function closeCheckoutModal() {
+        checkoutModal.classList.remove('active');
+        checkoutModalOverlay.classList.remove('active');
+        // Reset screens after closing
+        setTimeout(() => {
+            checkoutScreen1.classList.add('active');
+            checkoutScreen2.classList.remove('active');
+            checkoutScreen3.classList.remove('active');
+            utrInput.value = '';
+            utrError.style.display = 'none';
+        }, 500);
+    }
+
+    if (proceedCheckoutBtn) {
+        proceedCheckoutBtn.addEventListener('click', () => {
             if (cart.length === 0) return;
             
-            let message = "Hello Ruchika Sarees! I would like to place an order for the following items:\n\n";
+            // Calculate total
             let total = 0;
+            cart.forEach(item => total += item.price * item.quantity);
+            checkoutTotalAmount.innerText = `₹${total.toLocaleString('en-IN')}`;
             
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} (x${item.quantity}) - ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n`;
-                total += item.price * item.quantity;
-            });
+            // Close cart sidebar and open modal
+            cartSidebar.classList.remove('active');
+            cartOverlay.classList.remove('active');
             
-            message += `\n*Total Amount: ₹${total.toLocaleString('en-IN')}*\n\nPlease let me know the payment details.`;
+            checkoutModal.classList.add('active');
+            checkoutModalOverlay.classList.add('active');
+        });
+    }
+
+    if (checkoutClose) checkoutClose.addEventListener('click', closeCheckoutModal);
+    if (checkoutModalOverlay) checkoutModalOverlay.addEventListener('click', closeCheckoutModal);
+
+    // Verify UTR Logic
+    if (verifyPaymentBtn) {
+        verifyPaymentBtn.addEventListener('click', () => {
+            const utr = utrInput.value.trim();
+            const isValid = /^\d{12}$/.test(utr); // Must be exactly 12 digits
             
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/917903065185?text=${encodedMessage}`, '_blank');
+            if (!isValid) {
+                utrError.style.display = 'block';
+                utrInput.style.borderColor = '#ff4757';
+                return;
+            }
+            
+            utrError.style.display = 'none';
+            utrInput.style.borderColor = 'var(--color-gold)';
+            
+            // Show Loading Screen
+            checkoutScreen1.classList.remove('active');
+            checkoutScreen2.classList.add('active');
+            
+            // Simulate Bank API Verification Delay (2.5 seconds)
+            setTimeout(() => {
+                checkoutScreen2.classList.remove('active');
+                checkoutScreen3.classList.add('active');
+                
+                // Generate Order ID
+                const orderId = '#RS-' + Math.floor(1000 + Math.random() * 9000);
+                generatedOrderId.innerText = orderId;
+                
+                // Prepare final WhatsApp Receipt Text
+                let message = `*NEW ORDER RECEIPT ${orderId}*\n\nHello Ruchika Sarees! I have successfully placed and paid for an order. Please verify my UTR.\n\n`;
+                let finalTotal = 0;
+                cart.forEach((item, index) => {
+                    message += `${index + 1}. ${item.name} (x${item.quantity}) - ₹${(item.price * item.quantity).toLocaleString('en-IN')}\n`;
+                    finalTotal += item.price * item.quantity;
+                });
+                message += `\n*Total Paid:* ₹${finalTotal.toLocaleString('en-IN')}\n`;
+                message += `*UTR Number:* ${utr}\n\n`;
+                message += `Please process my delivery!`;
+                
+                // Update WhatsApp button link
+                sendReceiptBtn.onclick = () => {
+                    const encodedMessage = encodeURIComponent(message);
+                    window.open(`https://wa.me/917903065185?text=${encodedMessage}`, '_blank');
+                    
+                    // Clear cart after sending receipt
+                    cart = [];
+                    renderCart();
+                    closeCheckoutModal();
+                };
+                
+            }, 2500);
+        });
+    }
+
+    // Input validation real-time feedback
+    if(utrInput) {
+        utrInput.addEventListener('input', (e) => {
+            // Only allow numbers
+            e.target.value = e.target.value.replace(/[^\d]/g, '');
+            if (e.target.value.length === 12) {
+                utrError.style.display = 'none';
+                e.target.style.borderColor = 'var(--color-gold)';
+            }
         });
     }
 

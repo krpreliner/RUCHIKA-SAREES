@@ -541,8 +541,58 @@
                 <span>Total</span>
                 <span id="cartTotalPrice">₹0</span>
             </div>
-            <button class="btn btn-primary cart-checkout-btn" id="whatsappCheckoutBtn">
-                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+            <button class="btn btn-primary cart-checkout-btn" id="proceedCheckoutBtn">
+                <i class="fas fa-lock"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal-overlay" id="checkoutModalOverlay"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <button class="modal-close" id="checkoutClose"><i class="fas fa-times"></i></button>
+        
+        <!-- Screen 1: Scan & Pay -->
+        <div class="checkout-screen active" id="checkoutScreen1">
+            <h3>Secure UPI Payment</h3>
+            <p class="pay-amount">Amount: <span id="checkoutTotalAmount">₹0</span></p>
+            <div class="qr-container">
+                <img src="GALLERY/upi_qr_code.png" alt="Store UPI QR Code">
+                <div class="qr-corners"></div>
+            </div>
+            <p class="qr-instructions">Scan with PhonePe, GPay, or Paytm</p>
+            <div class="utr-input-group">
+                <label for="utrInput">Enter 12-Digit UTR Number</label>
+                <input type="text" id="utrInput" placeholder="e.g., 309876543210" maxlength="12" pattern="\d{12}">
+                <div class="error-msg" id="utrError">Please enter a valid 12-digit number.</div>
+            </div>
+            <button class="btn btn-primary verify-btn" id="verifyPaymentBtn">Verify Payment</button>
+        </div>
+
+        <!-- Screen 2: Loading Status -->
+        <div class="checkout-screen" id="checkoutScreen2">
+            <div class="spinner-container">
+                <div class="bank-spinner"></div>
+            </div>
+            <h3>Verifying Payment...</h3>
+            <p class="status-text">Connecting to banking servers to confirm your UTR.</p>
+        </div>
+
+        <!-- Screen 3: Success & Handoff -->
+        <div class="checkout-screen" id="checkoutScreen3">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Payment Confirmed!</h3>
+            <p class="status-text">Your order has been successfully verified.</p>
+            <div class="order-id">Order ID: <span id="generatedOrderId">#RS-1004</span></div>
+            
+            <div class="success-alert">
+                <i class="fas fa-info-circle"></i>
+                <p>To finalize delivery processing, please send your verified receipt to our WhatsApp team.</p>
+            </div>
+            <button class="btn btn-primary whatsapp-receipt-btn" id="sendReceiptBtn">
+                <i class="fab fa-whatsapp"></i> Send Receipt to WhatsApp
             </button>
         </div>
     </div>
