@@ -60,9 +60,9 @@
                     <a href="#" aria-label="Search" class="icon-btn"><i class="fas fa-search"></i></a>
                     <a href="#" aria-label="Account" class="icon-btn"><i class="far fa-user"></i></a>
                     <a href="#" aria-label="Wishlist" class="icon-btn"><i class="far fa-heart"></i></a>
-                    <a href="#" aria-label="Cart" class="icon-btn cart-btn">
+                    <a href="#" aria-label="Cart" class="icon-btn cart-btn" id="cartIcon">
                         <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-badge">2</span>
+                        <span class="cart-badge" id="cartBadge">0</span>
                     </a>
                 </div>
             </div>
@@ -525,6 +525,27 @@
             </div>
         </div>
     </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer">
+            <div class="empty-cart-msg">Your bag is currently empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalPrice">₹0</span>
+            </div>
+            <button class="btn btn-primary cart-checkout-btn" id="whatsappCheckoutBtn">
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
 
     <!-- WhatsApp Custom Chat Widget -->
     <div class="wa-widget" id="waWidget">
