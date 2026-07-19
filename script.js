@@ -1,161 +1,48 @@
 /**
- * RUCHIKA SAREES - Premium E-Commerce 
- * Luxury Animation & Interactions
+ * RUCHIKA SAREES - Luxury E-Commerce Redesign
+ * Core JavaScript Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================
-    // 1. Luxury Loader & Initial Animations
-    // ==========================================
-    const loader = document.getElementById('loader');
-    
-    // Simulate loading time (could be hooked to window.onload in production)
-    setTimeout(() => {
-        removeLoader();
-    }, 1500);
-
-    function removeLoader() {
-        loader.classList.add('fade-out');
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 1200); // Wait for the 1.2s transform to finish
-    }
 
     // ==========================================
-    // 2. Floating Navbar Scroll Effect
+    // 1. Header Scroll Effect
     // ==========================================
-    const headerWrapper = document.getElementById('headerWrapper');
-    
+    const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            headerWrapper.classList.add('scrolled');
+            header.classList.add('scrolled');
         } else {
-            headerWrapper.classList.remove('scrolled');
+            header.classList.remove('scrolled');
         }
     });
 
     // ==========================================
-    // 3. Mobile Menu & Bottom Nav
+    // 2. Mobile Sidebar Toggle
     // ==========================================
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    const bottomNavMenuBtn = document.getElementById('bottomNavMenuBtn');
+    const closeSidebarBtn = document.getElementById('closeSidebar');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-    function toggleMenu() {
-        mobileMenu.classList.toggle('active');
-        mobileMenuOverlay.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    function toggleSidebar() {
+        mobileSidebar.classList.toggle('active');
+        sidebarOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileSidebar.classList.contains('active') ? 'hidden' : '';
     }
 
-    mobileMenuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
-    mobileMenuOverlay.addEventListener('click', toggleMenu);
-    
-    // Clicking profile icon on bottom nav toggles menu for now
-    if(bottomNavMenuBtn) {
-        bottomNavMenuBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMenu();
-        });
-    }
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleSidebar);
+    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
+    if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
 
-    // Close menu when clicking a link
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
-    });
-
-    // Bottom Nav Active State
-    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
-    bottomNavItems.forEach(item => {
-        item.addEventListener('click', function() {
-            bottomNavItems.forEach(nav => nav.classList.remove('active'));
-            this.classList.add('active');
-        });
+    // Close sidebar on link click
+    const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', toggleSidebar);
     });
 
     // ==========================================
-    // 4. Golden Particles Generator
-    // ==========================================
-    const particlesContainer = document.getElementById('particles-js');
-    if(particlesContainer) {
-        const particleCount = window.innerWidth < 768 ? 15 : 30; // Fewer particles on mobile
-        
-        for (let i = 0; i < particleCount; i++) {
-            createParticle();
-        }
-
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Randomize properties
-            const size = Math.random() * 4 + 2; // 2px to 6px
-            const left = Math.random() * 100; // 0% to 100%
-            const top = Math.random() * 100; // 0% to 100%
-            const duration = Math.random() * 10 + 10; // 10s to 20s
-            const delay = Math.random() * 5; // 0s to 5s
-            
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${left}%`;
-            particle.style.top = `${top}%`;
-            particle.style.animationDuration = `${duration}s`;
-            particle.style.animationDelay = `${delay}s`;
-            
-            particlesContainer.appendChild(particle);
-        }
-    }
-
-    // ==========================================
-    // 5. Testimonial Carousel
-    // ==========================================
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    const dots = document.querySelectorAll('.dot');
-    let currentSlide = 0;
-    let slideInterval;
-
-    function goToSlide(index) {
-        testimonialCards.forEach(card => card.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        testimonialCards[index].classList.add('active');
-        dots[index].classList.add('active');
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        let next = (currentSlide + 1) % testimonialCards.length;
-        goToSlide(next);
-    }
-
-    function startCarousel() {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function resetCarousel() {
-        clearInterval(slideInterval);
-        startCarousel();
-    }
-
-    // Dot click events
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            goToSlide(index);
-            resetCarousel();
-        });
-    });
-
-    // Start auto-sliding if testimonials exist
-    if(testimonialCards.length > 0) {
-        startCarousel();
-    }
-
-    // ==========================================
-    // 6. Advanced Scroll Animations (Intersection Observer)
+    // 3. Intersection Observer (Fade Up Animations)
     // ==========================================
     const observerOptions = {
         root: null,
@@ -167,41 +54,88 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: Stop observing once animated to prevent re-triggering
-                // observer.unobserve(entry.target); 
+                // Unobserve after animating for performance
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe elements with fade-up and scale-in classes
-    const animatedElements = document.querySelectorAll('.fade-up, .scale-in');
+    const animatedElements = document.querySelectorAll('.fade-up');
     animatedElements.forEach(el => scrollObserver.observe(el));
 
     // ==========================================
-    // 7. Form Handling
+    // 4. Parallax Banner
     // ==========================================
-    const contactForm = document.getElementById('contactForm');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerText;
+    const parallaxWindow = document.querySelector('.parallax-window');
+    window.addEventListener('scroll', () => {
+        if (parallaxWindow && window.innerWidth > 768) {
+            const scrolled = window.scrollY;
+            const elementTop = parallaxWindow.parentElement.offsetTop;
+            const elementHeight = parallaxWindow.parentElement.offsetHeight;
             
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            btn.style.opacity = '0.8';
-            
-            // Simulate API Call
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent';
-                btn.style.background = '#25D366'; // WhatsApp Green for success
-                contactForm.reset();
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                    btn.style.opacity = '1';
-                }, 3000);
-            }, 1500);
+            // Only animate if in view
+            if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
+                const distance = scrolled - elementTop;
+                parallaxWindow.style.transform = `translateY(${distance * 0.4}px)`;
+            }
+        }
+    });
+
+    // ==========================================
+    // 5. New Arrivals Carousel
+    // ==========================================
+    const track = document.querySelector('.carousel-track-container');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (track && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -300, behavior: 'smooth' });
         });
+        nextBtn.addEventListener('click', () => {
+            track.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    }
+
+    // ==========================================
+    // 6. Testimonial Carousel
+    // ==========================================
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    let slideInterval;
+
+    if (testimonialCards.length > 0 && dots.length > 0) {
+        function goToSlide(index) {
+            testimonialCards.forEach(card => card.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonialCards[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % testimonialCards.length;
+            goToSlide(next);
+        }
+
+        function startCarousel() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetCarousel() {
+            clearInterval(slideInterval);
+            startCarousel();
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                resetCarousel();
+            });
+        });
+
+        startCarousel();
     }
 });
