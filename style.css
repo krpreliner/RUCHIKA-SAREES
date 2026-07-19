@@ -67,7 +67,7 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 .btn-primary:hover { background: transparent; color: var(--color-gold); }
 
 /* ================= Utility Bar ================= */
-.utility-bar { background: var(--color-gold); color: var(--color-bg-primary); text-align: center; padding: 10px 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; position: relative; z-index: 101; }
+.utility-bar { background: #0a0a0a; color: var(--color-champagne); text-align: center; padding: 10px 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative; z-index: 101; border-bottom: 1px solid rgba(212,175,55,0.15); }
 
 /* ================= 1. Premium E-Commerce Navbar ================= */
 .header {
