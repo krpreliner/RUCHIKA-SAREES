@@ -1,85 +1,40 @@
 /**
- * RUCHIKA SAREES - GSAP Ultra-Luxury Redesign
- * Core JavaScript & GSAP Animations
+ * RUCHIKA SAREES - V5 Ultra-Rebuild (GSAP + Lenis)
+ * 14 Custom Sections Architecture
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Initialize GSAP ScrollTrigger
+    // ==========================================
+    // 1. Lenis Smooth Scrolling Setup
+    // ==========================================
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    });
+
+    // Integration with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
     gsap.registerPlugin(ScrollTrigger);
 
     // ==========================================
-    // 1. Initial Hero Animations
-    // ==========================================
-    const heroTl = gsap.timeline();
-    
-    // Animate Hero Overlay out slightly (blur/fade effect)
-    heroTl.to('.hero-overlay', {
-        backgroundColor: 'rgba(0,0,0,0.3)',
-        duration: 2,
-        ease: 'power2.out'
-    }, 0);
-
-    // Fade up Hero Elements
-    heroTl.fromTo('.hero-content .gsap-fade-up', 
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out' },
-        0.5
-    );
-
-    // ==========================================
-    // 2. Scroll Parallax Backgrounds
-    // ==========================================
-    const parallaxElements = document.querySelectorAll('.gsap-parallax');
-    
-    parallaxElements.forEach(el => {
-        const speed = el.getAttribute('data-speed') || 0.5;
-        const img = el.querySelector('img');
-        
-        if(img) {
-            gsap.to(img, {
-                yPercent: 20 * speed,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true
-                }
-            });
-        }
-    });
-
-    // ==========================================
-    // 3. Scroll Reveal Animations (Fade Up)
-    // ==========================================
-    const fadeUpElements = document.querySelectorAll('section .gsap-fade-up');
-    
-    fadeUpElements.forEach(el => {
-        // Prepare element for animation
-        gsap.set(el, { y: 40, opacity: 0 });
-        
-        ScrollTrigger.create({
-            trigger: el,
-            start: 'top 85%', // trigger when element is 85% down the screen
-            onEnter: () => {
-                gsap.to(el, {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    ease: 'power3.out',
-                    overwrite: 'auto'
-                });
-            },
-            once: true // Only animate once
-        });
-    });
-
-    // ==========================================
-    // 4. Header Glassmorphism Scroll Effect
+    // 2. Floating Navbar Scroll Effect
     // ==========================================
     const header = document.getElementById('header');
     
+    // Using simple scroll listener instead of GSAP for the header for immediate response
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -89,34 +44,147 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 5. Mobile Sidebar Toggle
+    // 3. Mobile Sidebar Toggle
     // ==========================================
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const closeSidebarBtn = document.getElementById('closeSidebar');
-    const mobileSidebar = document.getElementById('mobileSidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const closeSidebarBtn = document.querySelector('.close-sidebar');
+    const mobileSidebar = document.querySelector('.mobile-sidebar');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
 
     function toggleSidebar() {
+        mobileSidebar.classList.toggle('active');
+        sidebarOverlay.classList.toggle('active');
+        
+        // Disable Lenis scrolling when sidebar is open
         if(mobileSidebar.classList.contains('active')) {
-            // Close
-            mobileSidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            lenis.stop();
         } else {
-            // Open
-            mobileSidebar.classList.add('active');
-            sidebarOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            lenis.start();
         }
     }
 
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleSidebar);
-    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
-    if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
-
-    const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+    if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleSidebar);
+    if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
+    if(sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
+    
+    // Close on link click
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
     sidebarLinks.forEach(link => {
-        link.addEventListener('click', toggleSidebar);
+        link.addEventListener('click', () => {
+            toggleSidebar();
+        });
     });
+
+    // ==========================================
+    // 4. Global Reveal Animations (Fade Up)
+    // ==========================================
+    const revealElements = document.querySelectorAll('.reveal-up');
+    
+    revealElements.forEach((el) => {
+        ScrollTrigger.create({
+            trigger: el,
+            start: "top 85%",
+            onEnter: () => {
+                gsap.to(el, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    overwrite: "auto"
+                });
+            },
+            once: true
+        });
+    });
+
+    // ==========================================
+    // 5. Parallax Image Effects
+    // ==========================================
+    // Slow zoom in on images that have the class .parallax-img
+    const parallaxImages = document.querySelectorAll('.parallax-img img');
+    parallaxImages.forEach(img => {
+        gsap.to(img, {
+            yPercent: 15, // Move down slightly as you scroll down
+            ease: "none",
+            scrollTrigger: {
+                trigger: img.parentElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    });
+
+    // The Massive Designer Picks Parallax (Section 8)
+    const dpParallax = document.querySelector('.dp-parallax img');
+    if(dpParallax) {
+        gsap.to(dpParallax, {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.designer-picks',
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    }
+
+    // Hero Section Parallax (Section 2)
+    const heroBg = document.querySelector('.hero-bg');
+    if(heroBg) {
+        gsap.to(heroBg, {
+            yPercent: 25,
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.hero',
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    }
+
+    // ==========================================
+    // 6. Shop by Occasion - Horizontal Scroll (Desktop)
+    // ==========================================
+    const occasionTrack = document.querySelector('.occasion-track');
+    const occasionContainer = document.querySelector('.shop-occasion');
+    
+    // We only apply this horizontal scroll pinning on Desktop (min-width: 1024px)
+    // If it's complex, we can use a simpler drag-to-scroll. 
+    // Here we implement mouse drag to scroll for native feel.
+    
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    const slider = document.querySelector('.occasion-scroll-container');
+    
+    if(slider) {
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+        
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+        
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    }
 
 });
