@@ -78,19 +78,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 4. Parallax Hero Effect
+    // 4. Golden Particles Generator
     // ==========================================
-    const parallaxVideo = document.getElementById('parallaxVideo');
-    
-    window.addEventListener('scroll', () => {
-        if(window.innerWidth > 768) { // Disable parallax on mobile for performance
-            const scrolled = window.scrollY;
-            if(scrolled < window.innerHeight) {
-                // Move the video down at 40% of the scroll speed
-                parallaxVideo.style.transform = `translateY(${scrolled * 0.4}px)`;
-            }
+    const particlesContainer = document.getElementById('particles-js');
+    if(particlesContainer) {
+        const particleCount = window.innerWidth < 768 ? 15 : 30; // Fewer particles on mobile
+        
+        for (let i = 0; i < particleCount; i++) {
+            createParticle();
         }
-    });
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Randomize properties
+            const size = Math.random() * 4 + 2; // 2px to 6px
+            const left = Math.random() * 100; // 0% to 100%
+            const top = Math.random() * 100; // 0% to 100%
+            const duration = Math.random() * 10 + 10; // 10s to 20s
+            const delay = Math.random() * 5; // 0s to 5s
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}%`;
+            particle.style.top = `${top}%`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
 
     // ==========================================
     // 5. Testimonial Carousel

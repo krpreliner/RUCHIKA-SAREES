@@ -9,7 +9,7 @@
     <!-- Google Fonts: Inter & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -97,22 +97,73 @@
         </nav>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-video-wrapper" id="parallaxVideo">
-            <!-- Vercel (Linux) is case-sensitive, so we use the exact folder and file casing -->
-            <video autoplay loop muted playsinline class="hero-video">
-                <source src="GALLERY/HERO.mp4" type="video/mp4">
-                <source src="gallery/hero.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 class="hero-title blur-reveal">Grace Woven Into<br>Every Saree</h1>
-            <p class="hero-subtitle blur-reveal delay-1">Discover exquisite Banarasi, Kanjivaram, Organza, Cotton, Linen and Designer Sarees crafted for every celebration.</p>
-            <div class="hero-buttons blur-reveal delay-2">
-                <a href="#shop" class="btn btn-primary">Shop Collection</a>
-                <a href="#" class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <!-- Hero Section (Luxury Split Layout) -->
+    <section id="home" class="hero-split">
+        <!-- Particles Container -->
+        <div id="particles-js" class="particles-container"></div>
+        
+        <div class="hero-split-container">
+            <!-- Left: Content (40%) -->
+            <div class="hero-content-left">
+                <div class="trust-badge fade-up">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <span>Trusted by 10,000+ Women</span>
+                </div>
+                
+                <h1 class="hero-title blur-reveal delay-1">Timeless Elegance<br>in Every Saree</h1>
+                <p class="hero-subtitle blur-reveal delay-2">"Handpicked collections crafted for weddings, festivals and every special occasion."</p>
+                
+                <div class="hero-buttons blur-reveal delay-3">
+                    <a href="#shop" class="btn btn-primary btn-luxury">Shop Collection</a>
+                    <a href="#collections" class="btn btn-outline btn-luxury-outline">Explore Categories</a>
+                </div>
+                
+                <div class="hero-features blur-reveal delay-4">
+                    <span><i class="fas fa-shipping-fast"></i> Free Shipping</span>
+                    <span><i class="fas fa-undo"></i> Easy Returns</span>
+                    <span><i class="fas fa-award"></i> Premium Quality</span>
+                </div>
+            </div>
+            
+            <!-- Right: Visual (60%) -->
+            <div class="hero-visual-right">
+                <!-- High-Res 4K Image -->
+                <div class="hero-image-wrapper">
+                    <img src="https://images.pexels.com/photos/14928074/pexels-photo-14928074.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Elegant Indian woman wearing a luxurious Banarasi silk saree" class="hero-model-img">
+                    <div class="silk-texture-overlay"></div>
+                </div>
+                
+                <!-- Floating Product Card 1 -->
+                <div class="floating-card card-pos-1">
+                    <div class="float-img">
+                        <img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg" alt="Royal Crimson Banarasi">
+                    </div>
+                    <div class="float-info">
+                        <h4>Royal Crimson Banarasi</h4>
+                        <span class="float-price">₹18,500</span>
+                    </div>
+                    <div class="float-actions">
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                </div>
+                
+                <!-- Floating Product Card 2 -->
+                <div class="floating-card card-pos-2">
+                    <div class="float-img">
+                        <img src="https://images.pexels.com/photos/14205210/pexels-photo-14205210.jpeg" alt="Emerald Green Kanjivaram">
+                    </div>
+                    <div class="float-info">
+                        <h4>Emerald Green Kanjivaram</h4>
+                        <span class="float-price">₹24,000</span>
+                    </div>
+                    <div class="float-actions">
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
