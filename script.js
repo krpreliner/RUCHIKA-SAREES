@@ -127,4 +127,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ==========================================
+    // 7. WhatsApp Widget Toggle
+    // ==========================================
+    const waToggle = document.getElementById('waToggle');
+    const waWidget = document.getElementById('waWidget');
+    const waClose = document.getElementById('waClose');
+
+    if (waToggle && waWidget && waClose) {
+        waToggle.addEventListener('click', () => {
+            waWidget.classList.add('active');
+        });
+        waClose.addEventListener('click', () => {
+            waWidget.classList.remove('active');
+        });
+    }
+
 });

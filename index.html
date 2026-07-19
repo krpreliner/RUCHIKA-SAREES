@@ -526,10 +526,35 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Custom Chat Widget -->
+    <div class="wa-widget" id="waWidget">
+        <div class="wa-header">
+            <div class="wa-avatar"><i class="fas fa-store"></i></div>
+            <div class="wa-info">
+                <h4>Ruchika Sarees</h4>
+                <p>Typically replies instantly</p>
+            </div>
+            <button class="wa-close" id="waClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="wa-body">
+            <div class="wa-msg-bubble">
+                Hello! Welcome to Ruchika Sarees. <br><br>Which type of premium saree are you looking for today?
+            </div>
+            <div class="wa-options">
+                <a href="https://wa.me/917903065185?text=Hello%2C%20I%20am%20interested%20in%20your%20premium%20Banarasi%20Sarees." target="_blank" rel="noopener noreferrer" class="wa-opt-btn">Banarasi</a>
+                <a href="https://wa.me/917903065185?text=Hello%2C%20I%20am%20interested%20in%20your%20premium%20Kanjivaram%20Sarees." target="_blank" rel="noopener noreferrer" class="wa-opt-btn">Kanjivaram</a>
+                <a href="https://wa.me/917903065185?text=Hello%2C%20I%20am%20interested%20in%20your%20premium%20Silk%20Sarees." target="_blank" rel="noopener noreferrer" class="wa-opt-btn">Pure Silk</a>
+                <a href="https://wa.me/917903065185?text=Hello%2C%20I%20am%20interested%20in%20your%20premium%20Organza%20Sarees." target="_blank" rel="noopener noreferrer" class="wa-opt-btn">Organza</a>
+                <a href="https://wa.me/917903065185?text=Hello%2C%20I%20am%20interested%20in%20your%20Bridal%20Collection." target="_blank" rel="noopener noreferrer" class="wa-opt-btn">Bridal Collection</a>
+                <a href="https://wa.me/917903065185?text=Hello%2C%20I%20am%20looking%20for%20something%20else." target="_blank" rel="noopener noreferrer" class="wa-opt-btn">Other / Need Help</a>
+            </div>
+        </div>
+    </div>
+
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/917903065185?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20sarees." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <div class="whatsapp-float" id="waToggle">
         <i class="fab fa-whatsapp"></i>
-    </a>
+    </div>
 
     <!-- Main JavaScript -->
     <script src="script.js"></script>
