@@ -399,8 +399,257 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
     // Initial render
     renderCart();
+
+    // ==========================================
+    // 10. Making Features Workable (Search, Wishlist, Account, Newsletter)
+    // ==========================================
+
+    // --- Toast Notification Helper ---
+    const toastNotification = document.getElementById('toastNotification');
+    const toastMessage = document.getElementById('toastMessage');
+    function showToast(msg) {
+        if(!toastNotification) return;
+        toastMessage.innerText = msg;
+        toastNotification.classList.add('active');
+        setTimeout(() => toastNotification.classList.remove('active'), 3000);
+    }
+
+    // --- Newsletter Form ---
+    const nlForm = document.querySelector('.nl-form');
+    if (nlForm) {
+        nlForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast("Thank you! Check your inbox for your 10% off code.");
+            nlForm.reset();
+        });
+    }
+
+    // --- Account Modal Logic ---
+    const accountIconBtn = document.getElementById('accountIconBtn');
+    const accountModal = document.getElementById('accountModal');
+    const accountClose = document.getElementById('accountClose');
+    const loginForm = document.getElementById('loginForm');
+    const loginScreen = document.getElementById('loginScreen');
+    const loggedInScreen = document.getElementById('loggedInScreen');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    // We reuse checkoutModalOverlay for the account modal as well for simplicity
+    const accountOverlay = document.getElementById('checkoutModalOverlay'); 
+
+    let isLoggedIn = localStorage.getItem('rs_loggedIn') === 'true';
+
+    function updateAccountUI() {
+        if (isLoggedIn) {
+            loginScreen.style.display = 'none';
+            loggedInScreen.style.display = 'block';
+        } else {
+            loginScreen.style.display = 'block';
+            loggedInScreen.style.display = 'none';
+        }
+    }
+
+    function toggleAccountModal(e) {
+        if(e) e.preventDefault();
+        updateAccountUI();
+        accountModal.classList.toggle('active');
+        if(accountOverlay) {
+            if(accountModal.classList.contains('active')) {
+                accountOverlay.classList.add('active');
+            } else {
+                accountOverlay.classList.remove('active');
+            }
+        }
+    }
+
+    if (accountIconBtn) accountIconBtn.addEventListener('click', toggleAccountModal);
+    if (accountClose) accountClose.addEventListener('click', toggleAccountModal);
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            isLoggedIn = true;
+            localStorage.setItem('rs_loggedIn', 'true');
+            updateAccountUI();
+            showToast("Successfully logged in!");
+        });
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            isLoggedIn = false;
+            localStorage.removeItem('rs_loggedIn');
+            updateAccountUI();
+            showToast("You have been logged out.");
+            setTimeout(() => toggleAccountModal({preventDefault:()=>true}), 1000);
+        });
+    }
+
+    // --- Smooth Scrolling for Navigation ---
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const text = e.target.innerText.toLowerCase();
+            let targetId = '';
+            if (text.includes('fabric')) targetId = 'categories';
+            if (text.includes('best sellers')) targetId = 'bestsellers';
+            if (text.includes('new arrivals')) targetId = 'new-arrivals';
+            
+            if (targetId) {
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                e.preventDefault();
+                showToast("Coming Soon!");
+            }
+        });
+    });
+
+    // --- Search Logic ---
+    const searchIconBtn = document.getElementById('searchIconBtn');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+
+    function toggleSearch(e) {
+        if(e) e.preventDefault();
+        searchOverlay.classList.toggle('active');
+        if(searchOverlay.classList.contains('active')) {
+            setTimeout(() => searchInput.focus(), 100);
+        }
+    }
+
+    if(searchIconBtn) searchIconBtn.addEventListener('click', toggleSearch);
+    if(searchClose) searchClose.addEventListener('click', toggleSearch);
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const allCards = document.querySelectorAll('.luxury-product-card');
+            
+            allCards.forEach(card => {
+                const name = card.querySelector('.prod-name').innerText.toLowerCase();
+                if (name.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // If they are searching, auto scroll them down slightly so they can see results filtering
+            if (query.length > 2 && window.scrollY < 500) {
+                document.getElementById('bestsellers').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // --- Wishlist Logic ---
+    let wishlist = JSON.parse(localStorage.getItem('rs_wishlist')) || [];
+    const wishlistIconBtn = document.getElementById('wishlistIconBtn');
+    const wishlistSidebar = document.getElementById('wishlistSidebar');
+    const wishlistClose = document.getElementById('wishlistClose');
+    const wishlistItemsContainer = document.getElementById('wishlistItemsContainer');
+    const wishlistBadge = document.getElementById('wishlistBadge');
+
+    function toggleWishlist(e) {
+        if(e) e.preventDefault();
+        wishlistSidebar.classList.toggle('active');
+        if(cartOverlay) cartOverlay.classList.toggle('active');
+    }
+
+    if(wishlistIconBtn) wishlistIconBtn.addEventListener('click', toggleWishlist);
+    if(wishlistClose) wishlistClose.addEventListener('click', toggleWishlist);
+
+    function renderWishlist() {
+        if(!wishlistItemsContainer) return;
+        
+        wishlistItemsContainer.innerHTML = '';
+        if (wishlist.length === 0) {
+            wishlistItemsContainer.innerHTML = '<div class="empty-cart-msg">Your wishlist is empty.</div>';
+            if(wishlistBadge) wishlistBadge.style.display = 'none';
+        } else {
+            if(wishlistBadge) {
+                wishlistBadge.style.display = 'flex';
+                wishlistBadge.innerText = wishlist.length;
+            }
+            wishlist.forEach((item, index) => {
+                const itemHTML = `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</div>
+                            <button class="remove-wishlist" data-index="${index}" style="background:none; border:none; color:var(--color-gold); cursor:pointer; font-size:0.8rem; text-align:left; margin-top:10px;">Remove</button>
+                        </div>
+                    </div>
+                `;
+                wishlistItemsContainer.insertAdjacentHTML('beforeend', itemHTML);
+            });
+            
+            document.querySelectorAll('.remove-wishlist').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.target.getAttribute('data-index');
+                    wishlist.splice(idx, 1);
+                    localStorage.setItem('rs_wishlist', JSON.stringify(wishlist));
+                    renderWishlist();
+                    updateWishlistHeartIcons();
+                    showToast("Removed from Wishlist");
+                });
+            });
+        }
+    }
+
+    // Inject heart icons into all product cards
+    document.querySelectorAll('.luxury-product-card').forEach(card => {
+        const prodImgContainer = card.querySelector('.prod-img');
+        if(prodImgContainer) {
+            const heartBtn = document.createElement('div');
+            heartBtn.className = 'wishlist-btn-card';
+            heartBtn.innerHTML = '<i class="fas fa-heart"></i>';
+            prodImgContainer.appendChild(heartBtn);
+            
+            heartBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const name = card.querySelector('.prod-name').innerText;
+                const priceText = card.querySelector('.price-current').innerText.replace(/[^0-9]/g, '');
+                const price = parseInt(priceText, 10);
+                const image = card.querySelector('img').getAttribute('src');
+                
+                const existingIdx = wishlist.findIndex(item => item.name === name);
+                
+                if (existingIdx >= 0) {
+                    wishlist.splice(existingIdx, 1);
+                    heartBtn.classList.remove('active');
+                    showToast("Removed from Wishlist");
+                } else {
+                    wishlist.push({ name, price, image });
+                    heartBtn.classList.add('active');
+                    showToast("Added to Wishlist!");
+                }
+                
+                localStorage.setItem('rs_wishlist', JSON.stringify(wishlist));
+                renderWishlist();
+            });
+        }
+    });
+
+    function updateWishlistHeartIcons() {
+        document.querySelectorAll('.luxury-product-card').forEach(card => {
+            const name = card.querySelector('.prod-name').innerText;
+            const heartBtn = card.querySelector('.wishlist-btn-card');
+            if(heartBtn) {
+                const isInWishlist = wishlist.some(item => item.name === name);
+                if (isInWishlist) heartBtn.classList.add('active');
+                else heartBtn.classList.remove('active');
+            }
+        });
+    }
+
+    // Init
+    renderWishlist();
+    updateWishlistHeartIcons();
 
 });

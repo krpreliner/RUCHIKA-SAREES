@@ -390,3 +390,23 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 .success-alert { background: rgba(46, 204, 113, 0.1); border-left: 3px solid #2ecc71; padding: 15px; border-radius: 4px; display: flex; gap: 15px; text-align: left; margin-bottom: 25px; }
 .success-alert i { color: #2ecc71; font-size: 1.2rem; margin-top: 2px; }
 .success-alert p { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4; margin: 0; }
+
+/* ================= 12. Search Overlay ================= */
+.search-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(23,9,13,0.98); z-index: 2000; display: flex; justify-content: center; align-items: flex-start; padding-top: 15vh; opacity: 0; pointer-events: none; transition: 0.4s ease; backdrop-filter: blur(10px); }
+.search-overlay.active { opacity: 1; pointer-events: all; }
+.search-container { width: 90%; max-width: 800px; text-align: center; }
+.search-container h2 { font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-gold); margin-bottom: 30px; }
+.search-input-group { position: relative; width: 100%; }
+.search-input-group i { position: absolute; left: 25px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--color-text-secondary); }
+.search-input-group input { width: 100%; padding: 25px 25px 25px 70px; font-size: 1.5rem; background: transparent; border: 2px solid rgba(207,161,68,0.5); border-radius: 50px; color: var(--color-text-primary); font-family: var(--font-sans); outline: none; transition: 0.3s; }
+.search-input-group input:focus { border-color: var(--color-gold); box-shadow: 0 0 20px rgba(207,161,68,0.2); background: rgba(255,255,255,0.02); }
+.search-close { top: 40px; right: 40px; font-size: 2.5rem; }
+
+/* ================= 13. Wishlist Button & Toast ================= */
+.wishlist-btn-card { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 1.2rem; cursor: pointer; transition: 0.3s; z-index: 10; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px); }
+.wishlist-btn-card:hover { background: rgba(207,161,68,0.8); transform: scale(1.1); }
+.wishlist-btn-card.active { color: #ff4757; background: rgba(255,255,255,0.9); border-color: transparent; }
+
+.toast-notification { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(100px); background: rgba(207,161,68,0.95); color: var(--color-bg-primary); padding: 15px 30px; border-radius: 50px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 9999; opacity: 0; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; }
+.toast-notification.active { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast-notification i { font-size: 1.2rem; }
