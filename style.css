@@ -176,6 +176,44 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 .promo-content p { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 30px; }
 @media (max-width: 768px) { .promo-banner { height: 400px; margin: 20px 0; } .promo-content h2 { font-size: 2.5rem; } }
 
+/* ================= 6. Enquiry Form ================= */
+.enquiry-section { background: var(--color-bg-primary); border-top: 1px solid rgba(212,175,55,0.1); }
+.enquiry-wrapper { max-width: 900px; margin: 0 auto; background: var(--color-bg-card); padding: 60px 50px; border-radius: var(--radius-soft); border: 1px solid rgba(212,175,55,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.enquiry-text { text-align: center; margin-bottom: 40px; }
+.enquiry-text .section-title { font-size: 2.5rem; color: var(--color-gold); }
+.enquiry-text .section-desc { font-size: 1.1rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; }
+@media (max-width: 768px) { .enquiry-wrapper { padding: 40px 20px; } .enquiry-text .section-title { font-size: 2rem; } }
+
+.enquiry-form { display: flex; flex-direction: column; gap: 30px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; gap: 30px; } }
+
+.input-group { position: relative; width: 100%; }
+.input-group.full-width { width: 100%; }
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 0; font-family: var(--font-sans); font-size: 1rem; color: var(--color-text-primary);
+    outline: none; transition: 0.3s;
+}
+.input-group select { cursor: pointer; color: var(--color-text-secondary); }
+.input-group select option { background: var(--color-bg-card); color: var(--color-text-primary); }
+
+.input-group label {
+    position: absolute; top: 15px; left: 0; font-family: var(--font-sans); font-size: 0.95rem;
+    color: var(--color-text-secondary); pointer-events: none; transition: 0.3s;
+}
+
+/* Floating Label Logic */
+.input-group input:focus, .input-group textarea:focus { border-bottom-color: var(--color-gold); }
+.input-group input:focus ~ label, .input-group textarea:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label, .input-group textarea:not(:placeholder-shown) ~ label {
+    top: -12px; font-size: 0.75rem; color: var(--color-gold); letter-spacing: 1px; text-transform: uppercase;
+}
+
+.enquiry-form .btn-primary { align-self: flex-start; margin-top: 10px; width: auto; }
+@media (max-width: 600px) { .enquiry-form .btn-primary { align-self: stretch; } }
+
 /* ================= 7. Value Props ================= */
 .value-props { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
 .vp-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
