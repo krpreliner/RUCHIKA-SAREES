@@ -1,14 +1,85 @@
 /**
- * RUCHIKA SAREES - Luxury E-Commerce Redesign
- * Core JavaScript Logic
+ * RUCHIKA SAREES - GSAP Ultra-Luxury Redesign
+ * Core JavaScript & GSAP Animations
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Initialize GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
     // ==========================================
-    // 1. Header Scroll Effect
+    // 1. Initial Hero Animations
+    // ==========================================
+    const heroTl = gsap.timeline();
+    
+    // Animate Hero Overlay out slightly (blur/fade effect)
+    heroTl.to('.hero-overlay', {
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        duration: 2,
+        ease: 'power2.out'
+    }, 0);
+
+    // Fade up Hero Elements
+    heroTl.fromTo('.hero-content .gsap-fade-up', 
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out' },
+        0.5
+    );
+
+    // ==========================================
+    // 2. Scroll Parallax Backgrounds
+    // ==========================================
+    const parallaxElements = document.querySelectorAll('.gsap-parallax');
+    
+    parallaxElements.forEach(el => {
+        const speed = el.getAttribute('data-speed') || 0.5;
+        const img = el.querySelector('img');
+        
+        if(img) {
+            gsap.to(img, {
+                yPercent: 20 * speed,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }
+    });
+
+    // ==========================================
+    // 3. Scroll Reveal Animations (Fade Up)
+    // ==========================================
+    const fadeUpElements = document.querySelectorAll('section .gsap-fade-up');
+    
+    fadeUpElements.forEach(el => {
+        // Prepare element for animation
+        gsap.set(el, { y: 40, opacity: 0 });
+        
+        ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%', // trigger when element is 85% down the screen
+            onEnter: () => {
+                gsap.to(el, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    overwrite: 'auto'
+                });
+            },
+            once: true // Only animate once
+        });
+    });
+
+    // ==========================================
+    // 4. Header Glassmorphism Scroll Effect
     // ==========================================
     const header = document.getElementById('header');
+    
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -18,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 2. Mobile Sidebar Toggle
+    // 5. Mobile Sidebar Toggle
     // ==========================================
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeSidebarBtn = document.getElementById('closeSidebar');
@@ -26,116 +97,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarOverlay = document.getElementById('sidebarOverlay');
 
     function toggleSidebar() {
-        mobileSidebar.classList.toggle('active');
-        sidebarOverlay.classList.toggle('active');
-        document.body.style.overflow = mobileSidebar.classList.contains('active') ? 'hidden' : '';
+        if(mobileSidebar.classList.contains('active')) {
+            // Close
+            mobileSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        } else {
+            // Open
+            mobileSidebar.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
 
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleSidebar);
     if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
     if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
 
-    // Close sidebar on link click
     const sidebarLinks = document.querySelectorAll('.sidebar-links a');
     sidebarLinks.forEach(link => {
         link.addEventListener('click', toggleSidebar);
     });
 
-    // ==========================================
-    // 3. Intersection Observer (Fade Up Animations)
-    // ==========================================
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Unobserve after animating for performance
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const animatedElements = document.querySelectorAll('.fade-up');
-    animatedElements.forEach(el => scrollObserver.observe(el));
-
-    // ==========================================
-    // 4. Parallax Banner
-    // ==========================================
-    const parallaxWindow = document.querySelector('.parallax-window');
-    window.addEventListener('scroll', () => {
-        if (parallaxWindow && window.innerWidth > 768) {
-            const scrolled = window.scrollY;
-            const elementTop = parallaxWindow.parentElement.offsetTop;
-            const elementHeight = parallaxWindow.parentElement.offsetHeight;
-            
-            // Only animate if in view
-            if (scrolled + window.innerHeight > elementTop && scrolled < elementTop + elementHeight) {
-                const distance = scrolled - elementTop;
-                parallaxWindow.style.transform = `translateY(${distance * 0.4}px)`;
-            }
-        }
-    });
-
-    // ==========================================
-    // 5. New Arrivals Carousel
-    // ==========================================
-    const track = document.querySelector('.carousel-track-container');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-
-    if (track && prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            track.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-        nextBtn.addEventListener('click', () => {
-            track.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-    }
-
-    // ==========================================
-    // 6. Testimonial Carousel
-    // ==========================================
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    const dots = document.querySelectorAll('.dot');
-    let currentSlide = 0;
-    let slideInterval;
-
-    if (testimonialCards.length > 0 && dots.length > 0) {
-        function goToSlide(index) {
-            testimonialCards.forEach(card => card.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            testimonialCards[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            let next = (currentSlide + 1) % testimonialCards.length;
-            goToSlide(next);
-        }
-
-        function startCarousel() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-
-        function resetCarousel() {
-            clearInterval(slideInterval);
-            startCarousel();
-        }
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                goToSlide(index);
-                resetCarousel();
-            });
-        });
-
-        startCarousel();
-    }
 });
