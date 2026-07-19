@@ -278,3 +278,13 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 
 /* ================= GSAP Utility Classes ================= */
 .reveal-up { opacity: 0; transform: translateY(30px); }
+
+/* ================= 9. Store Location (Map) ================= */
+.map-section { background: var(--color-bg-primary); padding-bottom: 20px; }
+.map-wrapper { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(207,161,68,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.map-wrapper iframe { display: block; filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(110%); }
+
+/* ================= WhatsApp Float ================= */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 1000; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; }
+.whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); color: #fff; }
+@media (max-width: 768px) { .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 20px; right: 20px; } }
