@@ -494,6 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (text.includes('fabric')) targetId = 'categories';
             if (text.includes('best sellers')) targetId = 'bestsellers';
             if (text.includes('new arrivals')) targetId = 'new-arrivals';
+            if (text.includes('our story')) targetId = 'our-story';
             
             if (targetId) {
                 const targetEl = document.getElementById(targetId);
