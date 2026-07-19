@@ -3,12 +3,12 @@
    ========================================================================= */
 
    :root {
-    /* Color Palette */
-    --color-bg-primary: #0A0A0A;
-    --color-bg-secondary: #141414;
-    --color-bg-card: #1A1A1A;
-    --color-gold: #D4AF37;
-    --color-gold-hover: #E8CA6A;
+    /* Color Palette - Deep Heritage Wine Theme */
+    --color-bg-primary: #17090d;
+    --color-bg-secondary: #210d13;
+    --color-bg-card: #2a1118;
+    --color-gold: #cfa144;
+    --color-gold-hover: #e0bc75;
     --color-text-primary: #E6DFD3;
     --color-text-secondary: #99938A;
     
@@ -67,7 +67,7 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 .btn-primary:hover { background: transparent; color: var(--color-gold); }
 
 /* ================= Utility Bar ================= */
-.utility-bar { background: #0a0a0a; color: var(--color-champagne); text-align: center; padding: 10px 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative; z-index: 101; border-bottom: 1px solid rgba(212,175,55,0.15); }
+.utility-bar { background: #110509; color: var(--color-champagne); text-align: center; padding: 10px 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; position: relative; z-index: 101; border-bottom: 1px solid rgba(212,175,55,0.15); }
 
 /* ================= 1. Premium E-Commerce Navbar ================= */
 .header {
@@ -180,7 +180,7 @@ img { max-width: 100%; height: auto; display: block; object-fit: cover; }
 .enquiry-section { background: var(--color-bg-primary); border-top: 1px solid rgba(212,175,55,0.1); }
 .enquiry-wrapper { 
     max-width: 1000px; margin: 0 auto; 
-    background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(8,8,8,0.98) 100%), url('GALLERY/cat_organza.png') center/cover no-repeat; 
+    background: linear-gradient(135deg, rgba(33,13,19,0.95) 0%, rgba(15,6,9,0.98) 100%), url('GALLERY/cat_organza.png') center/cover no-repeat; 
     padding: 80px 70px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); 
     box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative; overflow: hidden;
 }
