@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ruchika Sarees | The Ultimate Luxury Indian Fashion Experience</title>
-    <meta name="description" content="Premium designer sarees, Banarasi heritage, and exquisite bridal trousseau. A world-class luxury e-commerce experience.">
+    <title>Ruchika Sarees | Premium Luxury Indian Fashion E-Commerce</title>
+    <meta name="description" content="Shop premium designer sarees, Banarasi heritage, and exquisite bridal trousseau online.">
     
     <!-- Google Fonts: Playfair Display, Cormorant Garamond, Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,12 @@
 </head>
 <body>
     
-    <!-- 1. Premium Floating Navbar -->
+    <!-- Utility Bar -->
+    <div class="utility-bar">
+        <span>Complimentary Worldwide Express Shipping on orders over ₹50,000</span>
+    </div>
+
+    <!-- 1. Premium E-Commerce Navbar -->
     <header class="header" id="header">
         <div class="nav-container">
             <div class="nav-left">
@@ -34,9 +39,9 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="desktop-links">
-                    <a href="#featured" class="nav-link">Collections</a>
-                    <a href="#occasion" class="nav-link">Occasion</a>
-                    <a href="#trending" class="nav-link">Shop</a>
+                    <a href="#categories" class="nav-link">Shop By Fabric</a>
+                    <a href="#bestsellers" class="nav-link">Best Sellers</a>
+                    <a href="#new-arrivals" class="nav-link">New Arrivals</a>
                 </div>
             </div>
 
@@ -46,8 +51,8 @@
             
             <div class="nav-right">
                 <div class="desktop-links">
-                    <a href="#fabric" class="nav-link">Fabrics</a>
-                    <a href="#story" class="nav-link">Heritage</a>
+                    <a href="#" class="nav-link">Bridal Edit</a>
+                    <a href="#" class="nav-link">Our Story</a>
                 </div>
                 <div class="nav-icons">
                     <a href="#" aria-label="Search" class="icon-btn"><i class="fas fa-search"></i></a>
@@ -55,7 +60,7 @@
                     <a href="#" aria-label="Wishlist" class="icon-btn"><i class="far fa-heart"></i></a>
                     <a href="#" aria-label="Cart" class="icon-btn cart-btn">
                         <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-badge">0</span>
+                        <span class="cart-badge">2</span>
                     </a>
                 </div>
             </div>
@@ -68,15 +73,15 @@
         <button class="close-sidebar"><i class="fas fa-times"></i></button>
         <div class="sidebar-logo">RUCHIKA</div>
         <nav class="sidebar-nav">
-            <a href="#featured">Collections</a>
-            <a href="#occasion">Occasion</a>
-            <a href="#trending">Shop</a>
-            <a href="#fabric">Fabrics</a>
-            <a href="#story">Our Heritage</a>
+            <a href="#categories">Shop By Fabric</a>
+            <a href="#bestsellers">Best Sellers</a>
+            <a href="#new-arrivals">New Arrivals</a>
+            <a href="#">Bridal Edit</a>
+            <a href="#">Account</a>
         </nav>
     </div>
 
-    <!-- 2. Full-screen Cinematic Hero -->
+    <!-- 2. Shoppable Cinematic Hero -->
     <section class="hero" id="hero">
         <div class="hero-bg" data-speed="0.5">
             <video class="hero-img" autoplay loop muted playsinline>
@@ -84,334 +89,312 @@
             </video>
             <div class="hero-gradient"></div>
         </div>
-        <div class="hero-content">
+        <div class="hero-content text-center">
             <div class="hero-text-wrapper reveal-up">
-                <h1 class="hero-title">Grace Woven Into<br>Every Heritage</h1>
-                <p class="hero-subtitle">The 2026 Bridal Couture Collection. A symphony of pure Banarasi silk and timeless Indian craftsmanship.</p>
+                <h1 class="hero-title">The Royal Edit</h1>
+                <p class="hero-subtitle">Discover the new season's finest handcrafted Banarasi and Silk sarees.</p>
                 <div class="hero-buttons">
-                    <a href="#trending" class="btn btn-primary">Explore Collection</a>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span class="scroll-text">Discover</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- 3. Brand Story Section -->
-    <section class="brand-story section-spacing bg-ivory" id="story">
-        <div class="container">
-            <div class="story-grid">
-                <div class="story-content reveal-up">
-                    <span class="section-label">The Legacy</span>
-                    <h2 class="section-title">A Century of Handwoven Perfection</h2>
-                    <p class="section-desc">At Ruchika Sarees, we don't just sell fabric; we preserve history. Every thread is a testament to the master weavers of Banaras and Kanchipuram. We curate the absolute pinnacle of luxury ethnic fashion, designed for the modern woman who honors her roots.</p>
-                    <a href="#" class="link-discover">Read Our Story</a>
-                </div>
-                <div class="story-image reveal-up">
-                    <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Master Weaver Craftsmanship">
+                    <a href="#categories" class="btn btn-primary">Shop The Collection</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. Featured Collections (Overlapping Editorial) -->
-    <section class="featured-collections section-spacing bg-beige" id="featured">
-        <div class="container">
-            <div class="section-header text-center reveal-up">
-                <span class="section-label">Curated Edits</span>
-                <h2 class="section-title">The Editorial Collections</h2>
-            </div>
-            
-            <div class="editorial-layout">
-                <!-- Collection 1 -->
-                <a href="#" class="collection-block col-left reveal-up">
-                    <div class="col-img-wrapper parallax-img">
-                        <img src="https://images.pexels.com/photos/6765586/pexels-photo-6765586.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="The Organza Edit">
-                    </div>
-                    <div class="col-info">
-                        <h3>The Organza Edit</h3>
-                        <span>Shop Now</span>
-                    </div>
-                </a>
-                
-                <!-- Collection 2 -->
-                <a href="#" class="collection-block col-right reveal-up" style="margin-top: 150px;">
-                    <div class="col-img-wrapper parallax-img">
-                        <img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Royal Kanjivaram">
-                    </div>
-                    <div class="col-info">
-                        <h3>Royal Kanjivaram</h3>
-                        <span>Shop Now</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Shop by Occasion (Horizontal Scroll) -->
-    <section class="shop-occasion bg-ivory" id="occasion">
-        <div class="occasion-header container reveal-up">
-            <h2 class="section-title">Curated For The Moment</h2>
-            <p>Select your perfect ensemble by occasion.</p>
-        </div>
-        
-        <div class="occasion-scroll-container">
-            <div class="occasion-track">
-                <a href="#" class="occasion-card">
-                    <img src="https://images.pexels.com/photos/12117565/pexels-photo-12117565.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bridal">
-                    <h4>Bridal</h4>
-                </a>
-                <a href="#" class="occasion-card">
-                    <img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Festive">
-                    <h4>Festive</h4>
-                </a>
-                <a href="#" class="occasion-card">
-                    <img src="https://images.pexels.com/photos/8751532/pexels-photo-8751532.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Party Wear">
-                    <h4>Party Wear</h4>
-                </a>
-                <a href="#" class="occasion-card">
-                    <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Haldi & Mehendi">
-                    <h4>Haldi & Mehendi</h4>
-                </a>
-                <a href="#" class="occasion-card">
-                    <img src="https://images.pexels.com/photos/6765586/pexels-photo-6765586.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Reception">
-                    <h4>Reception</h4>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Trending Products (New Custom Cards) -->
-    <section class="trending-products section-spacing bg-beige" id="trending">
+    <!-- 3. Immediate Shop by Category -->
+    <section class="shop-categories section-spacing bg-primary" id="categories">
         <div class="container-fluid">
             <div class="section-header text-center reveal-up">
-                <span class="section-label">Signature Masterpieces</span>
-                <h2 class="section-title">Trending Now</h2>
+                <h2 class="section-title">Shop by Category</h2>
+            </div>
+            <div class="category-grid reveal-up">
+                <a href="#" class="cat-circle">
+                    <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Banarasi">
+                    <span>Banarasi</span>
+                </a>
+                <a href="#" class="cat-circle">
+                    <img src="https://images.pexels.com/photos/6765586/pexels-photo-6765586.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Kanjivaram">
+                    <span>Kanjivaram</span>
+                </a>
+                <a href="#" class="cat-circle">
+                    <img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Organza">
+                    <span>Organza</span>
+                </a>
+                <a href="#" class="cat-circle">
+                    <img src="https://images.pexels.com/photos/12117565/pexels-photo-12117565.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Bridal">
+                    <span>Bridal Edit</span>
+                </a>
+                <a href="#" class="cat-circle">
+                    <img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Linen">
+                    <span>Pure Linen</span>
+                </a>
+                <a href="#" class="cat-circle">
+                    <img src="https://images.pexels.com/photos/8751532/pexels-photo-8751532.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Silk">
+                    <span>Raw Silk</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Best Sellers (8 Products Grid) -->
+    <section class="best-sellers section-spacing bg-secondary" id="bestsellers">
+        <div class="container-fluid">
+            <div class="section-header text-center reveal-up">
+                <h2 class="section-title">Best Sellers</h2>
+                <a href="#" class="view-all-link">View All Products <i class="fas fa-arrow-right"></i></a>
             </div>
             
             <div class="product-grid">
                 <!-- Product 1 -->
                 <div class="luxury-product-card reveal-up">
                     <div class="prod-img">
-                        <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Gold Tissue Saree">
+                        <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 1" loading="lazy">
                         <div class="prod-actions">
                             <button aria-label="Quick View"><i class="far fa-eye"></i></button>
                             <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
                         </div>
-                        <button class="add-to-cart-float">Add to Cart</button>
+                        <button class="add-to-cart-float">Add to Bag</button>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-brand">Banarasi Heritage</span>
-                        <h3 class="prod-name">Pure Gold Tissue Handloom Saree</h3>
-                        <div class="prod-price">
-                            <span class="price-current">₹28,500</span>
-                        </div>
+                        <h3 class="prod-name">Deep Red Banarasi Silk Saree</h3>
+                        <div class="prod-price"><span class="price-current">₹28,500</span></div>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
-                <div class="luxury-product-card reveal-up" style="transition-delay: 0.1s;">
+                <div class="luxury-product-card reveal-up">
                     <div class="prod-img">
-                        <img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Midnight Linen">
+                        <img src="https://images.pexels.com/photos/6765586/pexels-photo-6765586.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 2" loading="lazy">
                         <div class="prod-actions">
                             <button aria-label="Quick View"><i class="far fa-eye"></i></button>
                             <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
                         </div>
-                        <button class="add-to-cart-float">Add to Cart</button>
+                        <button class="add-to-cart-float">Add to Bag</button>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-brand">Linen Edit</span>
-                        <h3 class="prod-name">Midnight Blue Premium Linen</h3>
-                        <div class="prod-price">
-                            <span class="price-current">₹14,000</span>
-                        </div>
+                        <h3 class="prod-name">Golden Tissue Organza Saree</h3>
+                        <div class="prod-price"><span class="price-current">₹18,000</span></div>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
-                <div class="luxury-product-card reveal-up" style="transition-delay: 0.2s;">
+                <div class="luxury-product-card reveal-up">
                     <div class="prod-img">
-                        <img src="https://images.pexels.com/photos/12117565/pexels-photo-12117565.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mustard Silk">
+                        <img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 3" loading="lazy">
                         <div class="prod-actions">
                             <button aria-label="Quick View"><i class="far fa-eye"></i></button>
                             <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
                         </div>
-                        <button class="add-to-cart-float">Add to Cart</button>
+                        <button class="add-to-cart-float">Add to Bag</button>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-brand">Kanjivaram Silk</span>
-                        <h3 class="prod-name">Mustard Yellow Bridal Kanjivaram</h3>
-                        <div class="prod-price">
-                            <span class="price-current">₹32,000</span>
-                            <span class="price-old">₹36,000</span>
-                        </div>
+                        <h3 class="prod-name">Midnight Black Raw Silk Saree</h3>
+                        <div class="prod-price"><span class="price-current">₹22,400</span></div>
                     </div>
                 </div>
 
                 <!-- Product 4 -->
-                <div class="luxury-product-card reveal-up" style="transition-delay: 0.3s;">
+                <div class="luxury-product-card reveal-up">
                     <div class="prod-img">
-                        <img src="https://images.pexels.com/photos/8751532/pexels-photo-8751532.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ivory Organza">
+                        <img src="https://images.pexels.com/photos/12117565/pexels-photo-12117565.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 4" loading="lazy">
                         <div class="prod-actions">
                             <button aria-label="Quick View"><i class="far fa-eye"></i></button>
                             <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
                         </div>
-                        <button class="add-to-cart-float">Add to Cart</button>
+                        <button class="add-to-cart-float">Add to Bag</button>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-brand">Organza Elegance</span>
-                        <h3 class="prod-name">Ivory Hand-Embroidered Organza</h3>
-                        <div class="prod-price">
-                            <span class="price-current">₹18,200</span>
+                        <h3 class="prod-name">Mustard Yellow Kanjivaram Bridal</h3>
+                        <div class="prod-price"><span class="price-current">₹45,000</span></div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 5" loading="lazy">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
                         </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Emerald Green Velvet Drape</h3>
+                        <div class="prod-price"><span class="price-current">₹32,000</span></div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/8751532/pexels-photo-8751532.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 6" loading="lazy">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Pastel Pink Handloom Cotton</h3>
+                        <div class="prod-price"><span class="price-current">₹12,500</span></div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 7" loading="lazy" style="filter: hue-rotate(90deg);">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Royal Blue Georgette Zari Saree</h3>
+                        <div class="prod-price"><span class="price-current">₹19,800</span></div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/6765586/pexels-photo-6765586.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 8" loading="lazy" style="filter: sepia(0.5);">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Antique Gold Shimmer Tissue</h3>
+                        <div class="prod-price"><span class="price-current">₹26,000</span></div>
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center mt-xl reveal-up">
-                <a href="#" class="btn btn-outline">View Entire Catalog</a>
-            </div>
         </div>
     </section>
 
-    <!-- 7. New Arrivals (Spotlight Layout) -->
-    <section class="new-arrivals section-spacing bg-ivory" id="new-arrivals">
-        <div class="container">
-            <div class="arrival-split">
-                <div class="arrival-text reveal-up">
-                    <h2 class="section-title">Fresh Off<br>The Loom</h2>
-                    <p class="section-desc">Discover our latest collection of handcrafted masterpieces, featuring contemporary designs woven with traditional techniques.</p>
-                    <a href="#" class="btn btn-primary">Shop New Arrivals</a>
-                </div>
-                <div class="arrival-spotlight reveal-up">
-                    <img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Emerald Green Saree" class="main-spotlight parallax-img">
-                    <div class="spotlight-card">
-                        <h4>Emerald Green Kanjivaram</h4>
-                        <span>₹26,500</span>
-                    </div>
-                </div>
-            </div>
+    <!-- 5. E-commerce Promotional Banner -->
+    <section class="promo-banner">
+        <div class="promo-bg" data-speed="0.2">
+            <img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=2560" alt="Promo">
+        </div>
+        <div class="promo-overlay"></div>
+        <div class="promo-content text-center reveal-up">
+            <h2>The Bridal Edit '26</h2>
+            <p>Handcrafted masterpieces for your special day.</p>
+            <a href="#" class="btn btn-primary">Shop The Collection</a>
         </div>
     </section>
 
-    <!-- 8. Designer Picks (Massive Parallax) -->
-    <section class="designer-picks">
-        <div class="dp-parallax" data-speed="0.2">
-            <img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=2560" alt="Designer Pick">
-        </div>
-        <div class="dp-overlay"></div>
-        <div class="dp-content reveal-up">
-            <h2>The Royal Velvet Edit</h2>
-            <p>Our head designer's personal favorite for winter weddings.</p>
-            <a href="#" class="btn btn-primary">Discover The Edit</a>
-        </div>
-    </section>
-
-    <!-- 9. Shop by Fabric (Minimalist Nav) -->
-    <section class="shop-fabric section-spacing bg-ivory" id="fabric">
-        <div class="container text-center">
-            <h2 class="section-title reveal-up">Explore By Fabric</h2>
-            <div class="fabric-list reveal-up">
-                <a href="#" class="fabric-item">Banarasi Silk</a>
-                <a href="#" class="fabric-item">Pure Kanjivaram</a>
-                <a href="#" class="fabric-item">Sheer Organza</a>
-                <a href="#" class="fabric-item">Breathable Linen</a>
-                <a href="#" class="fabric-item">Handloom Cotton</a>
-                <a href="#" class="fabric-item">Flowy Chiffon</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. Why Choose Ruchika (Minimal Icons) -->
-    <section class="why-choose section-spacing bg-beige">
-        <div class="container">
-            <div class="why-grid">
-                <div class="why-card reveal-up">
-                    <i class="fas fa-gem"></i>
-                    <h4>Purity Guaranteed</h4>
-                    <p>100% authentic handwoven silk directly from master artisans.</p>
-                </div>
-                <div class="why-card reveal-up" style="transition-delay: 0.1s;">
-                    <i class="fas fa-crown"></i>
-                    <h4>Royal Heritage</h4>
-                    <p>Over two decades of dressing brides in timeless elegance.</p>
-                </div>
-                <div class="why-card reveal-up" style="transition-delay: 0.2s;">
-                    <i class="fas fa-globe"></i>
-                    <h4>Global Express Delivery</h4>
-                    <p>Fully insured, lightning-fast shipping worldwide.</p>
-                </div>
-                <div class="why-card reveal-up" style="transition-delay: 0.3s;">
-                    <i class="fas fa-user-tie"></i>
-                    <h4>Private Styling</h4>
-                    <p>Complimentary bridal consultation with our expert stylists.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 11. Customer Testimonials (Glass Cards) -->
-    <section class="testimonials section-spacing bg-ivory">
-        <div class="container">
-            <div class="section-header text-center reveal-up">
-                <span class="section-label">Client Diaries</span>
-                <h2 class="section-title">Words of Love</h2>
-            </div>
-            
-            <div class="testi-grid">
-                <div class="testi-card reveal-up">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="quote">"The Banarasi I bought for my wedding was an absolute masterpiece. The zari work is exquisite and feels incredibly luxurious."</p>
-                    <div class="author">- Priya S., New York</div>
-                </div>
-                <div class="testi-card reveal-up" style="transition-delay: 0.1s;">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="quote">"Unmatched quality and service. The packaging alone made me feel like royalty. Will definitely be purchasing all my festive wear here."</p>
-                    <div class="author">- Anjali M., London</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 12. Instagram Gallery (Pinterest Masonry) -->
-    <section class="insta-gallery section-spacing bg-beige">
+    <!-- 6. New Arrivals (4 Products Grid) -->
+    <section class="new-arrivals section-spacing bg-primary" id="new-arrivals">
         <div class="container-fluid">
             <div class="section-header text-center reveal-up">
-                <h2 class="section-title">@RuchikaSarees</h2>
-                <p>Join our community of elegant women.</p>
+                <h2 class="section-title">New Arrivals</h2>
+                <a href="#" class="view-all-link">View All Products <i class="fas fa-arrow-right"></i></a>
             </div>
             
-            <div class="masonry-grid reveal-up">
-                <a href="#" class="masonry-item"><img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Insta 1" loading="lazy"></a>
-                <a href="#" class="masonry-item tall"><img src="https://images.pexels.com/photos/6765586/pexels-photo-6765586.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Insta 2" loading="lazy"></a>
-                <a href="#" class="masonry-item"><img src="https://images.pexels.com/photos/4055531/pexels-photo-4055531.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Insta 3" loading="lazy"></a>
-                <a href="#" class="masonry-item tall"><img src="https://images.pexels.com/photos/12117565/pexels-photo-12117565.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Insta 4" loading="lazy"></a>
-                <a href="#" class="masonry-item"><img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Insta 5" loading="lazy"></a>
+            <div class="product-grid">
+                <!-- Product 9 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/12117565/pexels-photo-12117565.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 9" loading="lazy" style="filter: grayscale(0.2);">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Silver Zari Chiffon Saree</h3>
+                        <div class="prod-price"><span class="price-current">₹15,000</span></div>
+                    </div>
+                </div>
+                
+                <!-- Product 10 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/28316406/pexels-photo-28316406.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 10" loading="lazy" style="filter: brightness(1.2);">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Wine Red Pure Banarasi</h3>
+                        <div class="prod-price"><span class="price-current">₹38,000</span></div>
+                    </div>
+                </div>
+
+                <!-- Product 11 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/8751532/pexels-photo-8751532.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 11" loading="lazy" style="filter: contrast(1.2);">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Lavender Organza Silk</h3>
+                        <div class="prod-price"><span class="price-current">₹16,500</span></div>
+                    </div>
+                </div>
+
+                <!-- Product 12 -->
+                <div class="luxury-product-card reveal-up">
+                    <div class="prod-img">
+                        <img src="https://images.pexels.com/photos/10468305/pexels-photo-10468305.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Saree 12" loading="lazy" style="filter: hue-rotate(180deg);">
+                        <div class="prod-actions">
+                            <button aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            <button aria-label="Wishlist"><i class="far fa-heart"></i></button>
+                        </div>
+                        <button class="add-to-cart-float">Add to Bag</button>
+                    </div>
+                    <div class="prod-info">
+                        <h3 class="prod-name">Teal Green Bridal Kanjivaram</h3>
+                        <div class="prod-price"><span class="price-current">₹42,000</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 13. Newsletter (Cinematic Dark) -->
-    <section class="newsletter bg-black text-ivory">
-        <div class="container text-center reveal-up">
-            <h2 class="section-title" style="color: var(--color-ivory);">Join The Private List</h2>
-            <p>Subscribe to receive exclusive access to private sales, bridal consultations, and new arrivals.</p>
-            <form class="nl-form">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">Subscribe</button>
-            </form>
+    <!-- 7. Value Props (Compact) -->
+    <section class="value-props bg-secondary">
+        <div class="container">
+            <div class="vp-grid">
+                <div class="vp-item">
+                    <i class="fas fa-gem"></i>
+                    <span>Authentic Silk</span>
+                </div>
+                <div class="vp-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Worldwide Shipping</span>
+                </div>
+                <div class="vp-item">
+                    <i class="fas fa-undo"></i>
+                    <span>Easy Returns</span>
+                </div>
+                <div class="vp-item">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure Checkout</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 14. Luxury Footer -->
-    <footer class="footer bg-black">
+    <!-- 8. E-Commerce Footer -->
+    <footer class="footer bg-primary">
         <div class="container">
             <div class="footer-grid">
                 <div class="ft-brand">
                     <h2 class="ft-logo">RUCHIKA</h2>
-                    <p class="ft-desc">Preserving the rich heritage of Indian textiles. Curating the finest handwoven sarees for the modern woman.</p>
+                    <p class="ft-desc">Premium Indian E-Commerce Store.</p>
                     <div class="ft-social">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -420,31 +403,34 @@
                 </div>
                 
                 <div class="ft-links">
-                    <h4>Boutique</h4>
+                    <h4>Shop</h4>
                     <ul>
-                        <li><a href="#">Bridal Edit</a></li>
+                        <li><a href="#">Banarasi Sarees</a></li>
+                        <li><a href="#">Kanjivaram Sarees</a></li>
+                        <li><a href="#">Organza Sarees</a></li>
+                        <li><a href="#">Bridal Trousseau</a></li>
                         <li><a href="#">New Arrivals</a></li>
-                        <li><a href="#">Bestsellers</a></li>
-                        <li><a href="#">Gift Cards</a></li>
                     </ul>
                 </div>
                 
                 <div class="ft-links">
-                    <h4>Client Care</h4>
+                    <h4>Customer Care</h4>
                     <ul>
                         <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
                         <li><a href="#">Track Order</a></li>
-                        <li><a href="#">Size Guide</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
                 
-                <div class="ft-contact">
-                    <h4>Visit Us</h4>
-                    <p>Rajendra Market, Bank More,<br>Dhanbad, Jharkhand</p>
-                    <p class="mt-s"><a href="mailto:info@ruchikasarees.com">info@ruchikasarees.com</a></p>
-                    <p><a href="tel:+917903065185">+91 79030 65185</a></p>
+                <div class="ft-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe for exclusive offers and new collection drops.</p>
+                    <form class="nl-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
                 </div>
             </div>
             

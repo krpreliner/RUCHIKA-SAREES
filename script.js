@@ -1,6 +1,6 @@
 /**
- * RUCHIKA SAREES - V5 Ultra-Rebuild (GSAP + Lenis)
- * 14 Custom Sections Architecture
+ * RUCHIKA SAREES - V7 High-Converting E-Commerce
+ * GSAP + Lenis Integration
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const lenis = new Lenis({
         duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
         direction: 'vertical',
         gestureDirection: 'vertical',
         smooth: true,
@@ -34,9 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const header = document.getElementById('header');
     
-    // Using simple scroll listener instead of GSAP for the header for immediate response
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 30) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
@@ -55,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileSidebar.classList.toggle('active');
         sidebarOverlay.classList.toggle('active');
         
-        // Disable Lenis scrolling when sidebar is open
         if(mobileSidebar.classList.contains('active')) {
             lenis.stop();
         } else {
@@ -67,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
     if(sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
     
-    // Close on link click
     const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
     sidebarLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -81,15 +78,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal-up');
     
     revealElements.forEach((el) => {
+        // Reduced the y translate distance so it feels snappier for an e-commerce store
+        gsap.set(el, { y: 30, opacity: 0 });
         ScrollTrigger.create({
             trigger: el,
-            start: "top 85%",
+            start: "top 90%",
             onEnter: () => {
                 gsap.to(el, {
                     y: 0,
                     opacity: 1,
-                    duration: 1.2,
-                    ease: "power3.out",
+                    duration: 0.8, // Faster for e-commerce
+                    ease: "power2.out",
                     overwrite: "auto"
                 });
             },
@@ -98,43 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 5. Parallax Image Effects
+    // 5. Hero & Promo Parallax Effects
     // ==========================================
-    // Slow zoom in on images that have the class .parallax-img
-    const parallaxImages = document.querySelectorAll('.parallax-img img');
-    parallaxImages.forEach(img => {
-        gsap.to(img, {
-            yPercent: 15, // Move down slightly as you scroll down
-            ease: "none",
-            scrollTrigger: {
-                trigger: img.parentElement,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-    });
-
-    // The Massive Designer Picks Parallax (Section 8)
-    const dpParallax = document.querySelector('.dp-parallax img');
-    if(dpParallax) {
-        gsap.to(dpParallax, {
-            yPercent: 30,
-            ease: "none",
-            scrollTrigger: {
-                trigger: '.designer-picks',
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-    }
-
-    // Hero Section Parallax (Section 2)
     const heroBg = document.querySelector('.hero-bg');
     if(heroBg) {
         gsap.to(heroBg, {
-            yPercent: 25,
+            yPercent: 15,
             ease: "none",
             scrollTrigger: {
                 trigger: '.hero',
@@ -145,45 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 6. Shop by Occasion - Horizontal Scroll (Desktop)
-    // ==========================================
-    const occasionTrack = document.querySelector('.occasion-track');
-    const occasionContainer = document.querySelector('.shop-occasion');
-    
-    // We only apply this horizontal scroll pinning on Desktop (min-width: 1024px)
-    // If it's complex, we can use a simpler drag-to-scroll. 
-    // Here we implement mouse drag to scroll for native feel.
-    
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    const slider = document.querySelector('.occasion-scroll-container');
-    
-    if(slider) {
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-        
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-        
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast
-            slider.scrollLeft = scrollLeft - walk;
+    const promoBg = document.querySelector('.promo-bg img');
+    if(promoBg) {
+        gsap.to(promoBg, {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.promo-banner',
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
         });
     }
 
